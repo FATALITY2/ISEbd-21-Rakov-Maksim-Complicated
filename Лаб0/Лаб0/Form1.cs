@@ -5,16 +5,15 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;35432
 using System.Windows.Forms;
-
+r45
 namespace Лаб0
-{
-    public partial class Form1 : Form
+{3412423
+    public partial cla5451234 Form1 : Form
     {
         public Form1()
-        {
-            InitializeComponent();
+        {23f;
         }
-    }
-}
+    }5
+    342t342123tr412312
