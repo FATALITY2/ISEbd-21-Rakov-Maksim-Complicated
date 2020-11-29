@@ -16,7 +16,7 @@ namespace WindowsFormsCrane
         public FormCrane()
         {
             InitializeComponent();
-            
+
         }
         private void Draw()
         {
@@ -28,7 +28,6 @@ namespace WindowsFormsCrane
         /// <summary>
         /// Обработка нажатия кнопки "Создать"
         /// </summary>
-
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonCreate_Click(object sender, EventArgs e)
@@ -65,7 +64,5 @@ namespace WindowsFormsCrane
             }
             Draw();
         }
-
     }
-
 }
