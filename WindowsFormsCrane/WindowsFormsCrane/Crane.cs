@@ -1,5 +1,9 @@
-﻿using System.Drawing;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Drawing;
 
 namespace WindowsFormsCrane
 {
@@ -24,7 +28,6 @@ namespace WindowsFormsCrane
         /// <summary>
         /// Ширина отрисовки крана
         /// </summary>
-
         private readonly int carWidth = 100;
         /// <summary>
         /// Высота отрисовки крана
@@ -46,37 +49,27 @@ namespace WindowsFormsCrane
         /// Дополнительный цвет
         /// </summary>
         public Color DopColor { private set; get; }
-        public Color DopColor2 { private set; get; }
-        /// <summary>
-        /// Признак наличия главной части крана
-        /// </summary>
-        public bool MainPartOfCrane { private set; get; }
         /// <summary>
         /// Признак наличия противовеса
         /// </summary>
         public bool Counterweight { private set; get; }
         /// <summary>
-        /// Признак наличия гусениц
-        /// </summary>
-        public bool Сaterpillar { private set; get; }
-        /// <summary>
         /// Признак наличия подъемного устройства
         /// </summary>
         public bool LiftingDevice { private set; get; }
 
-        public Crane(int maxSpeed, float weight, Color mainColor, Color dopColor, Color dopColor2, bool mainPartOfCrane, bool counterweight, bool caterpillar, bool liftingDevice)
+        DopRollers Rollers = new DopRollers();
+
+        public Crane(int maxSpeed, float weight, Color mainColor, Color dopColor, bool counterweight, bool liftingDevice, int countRollers)
         {
             MaxSpeed = maxSpeed;
-
             Weight = weight;
             MainColor = mainColor;
             DopColor = dopColor;
-            DopColor2 = dopColor2;
-            MainPartOfCrane = mainPartOfCrane;
             Counterweight = counterweight;
-            Сaterpillar = caterpillar;
             LiftingDevice = liftingDevice;
-        }
+            Rollers.enumeration = countRollers;
+        }       
         public void SetPosition(int x, int y, int width, int height)
         {
             _startPosX = x;
@@ -84,40 +77,39 @@ namespace WindowsFormsCrane
             _pictureWidth = width;
             _pictureHeight = height;
         }
+        
         /// Изменение направления пермещения
         public void MoveTransport(Direction direction)
         {
-            const int boarderTop = 43;
-            const int boarderLeft = -40;
-            const int boarderRight = 73;
-            const int boarderDown = 20;
+            int boarderTop = 43;
+            int boarderLeft = 0;
             float step = MaxSpeed * 100 / Weight;
             switch (direction)
             {
                 // вправо
                 case Direction.Right:
-                    if (_startPosX + step < _pictureWidth - carWidth - boarderRight)
+                    if (_startPosX + step < _pictureWidth - carWidth - 73)
                     {
                         _startPosX += step;
                     }
                     break;
                 //влево
                 case Direction.Left:
-                    if (_startPosX - step > boarderLeft)
+                    if (_startPosX - step > boarderLeft - 40)
                     {
                         _startPosX -= step;
                     }
                     break;
                 //вверх
                 case Direction.Up:
-                    if (_startPosY - step > boarderTop )
+                    if (_startPosY - step > boarderTop)
                     {
                         _startPosY -= step;
                     }
                     break;
                 //вниз
                 case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - carHeight - boarderDown)
+                    if (_startPosY + step < _pictureHeight - carHeight - 20)
                     {
                         _startPosY += step;
                     }
@@ -131,15 +123,14 @@ namespace WindowsFormsCrane
         public void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-             
-                //рисую главную часть крана
-                g.DrawRectangle(pen, _startPosX + 54, _startPosY + 20, 25, 40);
-                g.DrawRectangle(pen, _startPosX + 80, _startPosY + 30, 80, 30);
-                Brush mainPart = new SolidBrush(DopColor);
-                g.FillRectangle(mainPart, _startPosX + 55, _startPosY + 21, 24, 38);
-                g.FillRectangle(mainPart, _startPosX + 80, _startPosY + 31, 80, 29);
-                g.FillRectangle(mainPart, _startPosX + 141, _startPosY + 20, 12, 5);
 
+            //рисую главную часть крана
+            g.DrawRectangle(pen, _startPosX + 54, _startPosY + 20, 25, 40);
+            g.DrawRectangle(pen, _startPosX + 80, _startPosY + 30, 80, 30);
+            Brush mainPart = new SolidBrush(DopColor);
+            g.FillRectangle(mainPart, _startPosX + 55, _startPosY + 21, 24, 38);
+            g.FillRectangle(mainPart, _startPosX + 80, _startPosY + 31, 80, 29);
+            g.FillRectangle(mainPart, _startPosX + 141, _startPosY + 20, 12, 5);
 
             // Противовес
             if (Counterweight)
@@ -155,19 +146,11 @@ namespace WindowsFormsCrane
                 g.FillRectangle(counterweight, _startPosX + 161, _startPosY + 21, 21, 43);
                 g.FillRectangle(counterweight, _startPosX + 141, _startPosY + 20, 12, 5);
                 g.FillRectangle(counterweight, _startPosX + 86, _startPosY + 61, 44, 4);
-                Brush window = new SolidBrush(DopColor2);
-                g.FillRectangle(window, _startPosX + 61, _startPosY + 31, 9, 19);
             }
-            
-            //гусеница
-                g.DrawEllipse(pen, _startPosX + 61, _startPosY + 66, 90, 20);
-                g.DrawEllipse(pen, _startPosX + 127, _startPosY + 68, 15, 15);
-                g.DrawEllipse(pen, _startPosX + 66, _startPosY + 69, 62, 14);
-                Brush caterpillar = new SolidBrush(MainColor);
-                g.FillEllipse(caterpillar, _startPosX + 127, _startPosY + 68, 15, 15);
-                g.FillEllipse(caterpillar, _startPosX + 66, _startPosY + 69, 63, 15);
 
-           
+            //гусеница
+            g.DrawEllipse(pen, _startPosX + 66, _startPosY + 66, 80, 20);
+
             // подъемное устройство
             if (LiftingDevice)
             {
@@ -190,7 +173,7 @@ namespace WindowsFormsCrane
                 g.FillRectangle(liftingDevice, _startPosX + 72, _startPosY - 13, 8, 5);
                 g.FillRectangle(liftingDevice, _startPosX + 53, _startPosY - 44, 8, 5);
             }
-
+            Rollers.DrawRollers(g, DopColor, _startPosX, _startPosY);
         }
     }
 }

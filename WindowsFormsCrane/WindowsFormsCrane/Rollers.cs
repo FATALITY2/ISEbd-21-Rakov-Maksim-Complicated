@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsCrane
 {
-    enum RollersNumber
+    public enum RollersEnum
     {
-        DopRollers4 = 4,
-        DopRollers5 = 5,
-        DopRollers6 = 6,
+        Four,
+        Five,
+        Six
     }
 }
