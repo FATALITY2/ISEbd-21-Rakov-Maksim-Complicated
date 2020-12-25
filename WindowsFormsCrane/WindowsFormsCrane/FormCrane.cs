@@ -12,37 +12,80 @@ namespace WindowsFormsCrane
 {
     public partial class FormCrane : Form
     {
-        private Crane crane;
+        private TrackedVehicle trackedVehicle;
+
         public FormCrane()
         {
             InitializeComponent();
-
+            comboBoxRollers.Items.AddRange(new string[] { "2 Катков", "4 Катков", "6 Катков" });
         }
+
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxCrane.Width, pictureBoxCrane.Height);
+            Bitmap bmp = new Bitmap(pictureBox.Width, pictureBox.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            crane.DrawTransport(gr);
-            pictureBoxCrane.Image = bmp;
+            trackedVehicle.DrawTransport(gr);
+            pictureBox.Image = bmp;
         }
-        /// <summary>
-        /// Обработка нажатия кнопки "Создать"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonCreate_Click(object sender, EventArgs e)
+
+        private void buttonCreateTrackedVehicle_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            int countRollers = Convert.ToInt32(comboBoxCountRollers.SelectedItem);
-            crane = new Crane(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Black, Color.Gray, true, true, countRollers);
-            crane.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxCrane.Width, pictureBoxCrane.Height);
+            trackedVehicle = new TrackedVehicle(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Blue,
+            Color.Green, Color.Blue);
+            trackedVehicle.SetPosition(rnd.Next(50, 120), rnd.Next(50, 120), pictureBox.Width,
+            pictureBox.Height);
             Draw();
         }
-        /// <summary>
-        /// Обработка нажатия кнопок управления
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private void buttonCreateCrane_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            trackedVehicle = new Crane(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Blue, Color.Green,
+            Color.Red, (comboBoxRollers.SelectedIndex + 1) * 2, FormOfRollers());
+            trackedVehicle.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBox.Width, pictureBox.Height);
+
+            buttonSecondForm.Enabled = true;
+            buttonFirstForm.Enabled = true;
+            buttonThirdForm.Enabled = true;
+
+            Draw();
+        }
+
+        private void buttonRollersForm_Click(object sender, EventArgs e)
+        {
+            if (sender == buttonFirstForm)
+            {
+                buttonSecondForm.Enabled = false;
+                buttonThirdForm.Enabled = false;
+            }
+            else if (sender == buttonSecondForm)
+            {
+                buttonFirstForm.Enabled = false;
+                buttonThirdForm.Enabled = false;
+            }
+            else
+            {
+                buttonFirstForm.Enabled = false;
+                buttonSecondForm.Enabled = false;
+            }
+        }
+
+        private int FormOfRollers()
+        {
+            if (buttonFirstForm.Enabled == true)
+            {
+                return 0;
+            }
+            else if (buttonSecondForm.Enabled == true)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+
         private void buttonMove_Click(object sender, EventArgs e)
         {
             //получаем имя кнопки
@@ -50,18 +93,19 @@ namespace WindowsFormsCrane
             switch (name)
             {
                 case "buttonUp":
-                    crane.MoveTransport(Direction.Up);
+                    trackedVehicle.MoveTransport(Direction.Up);
                     break;
                 case "buttonDown":
-                    crane.MoveTransport(Direction.Down);
+                    trackedVehicle.MoveTransport(Direction.Down);
                     break;
                 case "buttonLeft":
-                    crane.MoveTransport(Direction.Left);
+                    trackedVehicle.MoveTransport(Direction.Left);
                     break;
                 case "buttonRight":
-                    crane.MoveTransport(Direction.Right);
+                    trackedVehicle.MoveTransport(Direction.Right);
                     break;
             }
+
             Draw();
         }
     }
