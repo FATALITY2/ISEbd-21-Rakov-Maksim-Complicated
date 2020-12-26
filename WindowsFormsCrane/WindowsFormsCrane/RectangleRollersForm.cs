@@ -43,43 +43,35 @@ namespace WindowsFormsCrane
         {
             Pen penr = new Pen(Color.Black, 1);
             Brush dopc = new SolidBrush(DopColor);
-            g.FillRectangle(dopc, _startPosX + 88, _startPosY + 67, 15, 15);
-            g.FillRectangle(dopc, _startPosX + 105, _startPosY + 67, 15, 15);
-            g.DrawRectangle(penr, _startPosX + 88, _startPosY + 67, 15, 15);
-            g.DrawRectangle(penr, _startPosX + 105, _startPosY + 67, 15, 15);
+
+            g.FillRectangle(dopc, _startPosX + 95, _startPosY + 70, 10, 10);
+            g.FillRectangle(dopc, _startPosX + 106, _startPosY + 70, 10, 10);
+            g.DrawRectangle(penr, _startPosX + 95, _startPosY + 70, 10, 10);
+            g.DrawRectangle(penr, _startPosX + 106, _startPosY + 70, 10, 10);
         }
 
         private void DrawFourRollers(Graphics g, float _startPosX, float _startPosY)
         {
+            DrawTwoRollers(g, _startPosX, _startPosY);
             Pen penr = new Pen(Color.Black, 1);
             Brush dopc = new SolidBrush(DopColor);
 
-            g.FillRectangle(dopc, _startPosX + 77, _startPosY + 70, 10, 10);
-            g.FillRectangle(dopc, _startPosX + 121, _startPosY + 70, 10, 10);
-            g.DrawRectangle(penr, _startPosX + 77, _startPosY + 70, 10, 10);
-            g.DrawRectangle(penr, _startPosX + 121, _startPosY + 70, 10, 10);
-            g.FillRectangle(dopc, _startPosX + 88, _startPosY + 67, 15, 15);
-            g.FillRectangle(dopc, _startPosX + 105, _startPosY + 67, 15, 15);
-            g.DrawRectangle(penr, _startPosX + 88, _startPosY + 67, 15, 15);
-            g.DrawRectangle(penr, _startPosX + 105, _startPosY + 67, 15, 15);
+            g.FillRectangle(dopc, _startPosX + 84, _startPosY + 70, 10, 10);
+            g.FillRectangle(dopc, _startPosX + 117, _startPosY + 70, 10, 10);
+            g.DrawRectangle(penr, _startPosX + 84, _startPosY + 70, 10, 10);
+            g.DrawRectangle(penr, _startPosX + 117, _startPosY + 70, 10, 10);
         }
 
         private void DrawSixRollers(Graphics g, float _startPosX, float _startPosY)
         {
+            DrawFourRollers(g, _startPosX, _startPosY);
             Pen penr = new Pen(Color.Black, 1);
             Brush dopc = new SolidBrush(DopColor);
+
             g.FillRectangle(dopc, _startPosX + 75, _startPosY + 70, 10, 10);
             g.FillRectangle(dopc, _startPosX + 125, _startPosY + 70, 10, 10);
             g.DrawRectangle(penr, _startPosX + 75, _startPosY + 70, 10, 10);
             g.DrawRectangle(penr, _startPosX + 125, _startPosY + 70, 10, 10);
-            g.FillRectangle(dopc, _startPosX + 95, _startPosY + 72, 10, 10);
-            g.FillRectangle(dopc, _startPosX + 105, _startPosY + 72, 10, 10);
-            g.DrawRectangle(penr, _startPosX + 95, _startPosY + 72, 10, 10);
-            g.DrawRectangle(penr, _startPosX + 105, _startPosY + 72, 10, 10);
-            g.FillRectangle(dopc, _startPosX + 85, _startPosY + 72, 10, 10);
-            g.FillRectangle(dopc, _startPosX + 115, _startPosY + 72, 10, 10);
-            g.DrawRectangle(penr, _startPosX + 85, _startPosY + 72, 10, 10);
-            g.DrawRectangle(penr, _startPosX + 115, _startPosY + 72, 10, 10);
         }
     }
 }

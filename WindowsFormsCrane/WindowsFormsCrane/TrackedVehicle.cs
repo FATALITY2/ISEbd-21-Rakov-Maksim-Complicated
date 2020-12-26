@@ -14,7 +14,7 @@ namespace WindowsFormsCrane
 
         public Color DopColor { protected set; get; }
 
-        public TrackedVehicle(int maxSpeed, float weight, Color mainColor, Color dopColor, Color cannonColor)
+        public TrackedVehicle(int maxSpeed, float weight, Color mainColor, Color dopColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
@@ -83,7 +83,6 @@ namespace WindowsFormsCrane
 
             // Противовес
             {
-
                 g.DrawRectangle(pen, _startPosX + 160, _startPosY + 20, 22, 44);
                 g.DrawLine(pen, _startPosX + 140, _startPosY + 30, _startPosX + 140, _startPosY + 20);
                 g.DrawLine(pen, _startPosX + 153, _startPosY + 30, _startPosX + 153, _startPosY + 20);

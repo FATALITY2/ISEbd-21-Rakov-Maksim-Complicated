@@ -42,13 +42,13 @@ namespace WindowsFormsCrane
         {
             Brush brDopColor = new SolidBrush(DopColor);
 
-            PointF[] cannon1Points = { new PointF(_startPosX + 105, _startPosY + 81), new PointF(_startPosX + 110, _startPosY + 68),
+            PointF[] rollers1Points = { new PointF(_startPosX + 105, _startPosY + 81), new PointF(_startPosX + 110, _startPosY + 68),
                                            new PointF(_startPosX + 115, _startPosY + 68), new PointF(_startPosX + 120, _startPosY + 81) };
-            g.FillPolygon(brDopColor, cannon1Points);
+            g.FillPolygon(brDopColor, rollers1Points);
 
-            PointF[] cannon2Points = { new PointF(_startPosX + 90, _startPosY + 81), new PointF(_startPosX + 95, _startPosY + 68),
+            PointF[] rollers2Points = { new PointF(_startPosX + 90, _startPosY + 81), new PointF(_startPosX + 95, _startPosY + 68),
                                            new PointF(_startPosX + 100, _startPosY + 68), new PointF(_startPosX + 105, _startPosY + 81) };
-            g.FillPolygon(brDopColor, cannon2Points);
+            g.FillPolygon(brDopColor, rollers2Points);
         }
 
         private void DrawFourRollers(Graphics g, float _startPosX, float _startPosY)
@@ -56,13 +56,13 @@ namespace WindowsFormsCrane
             DrawTwoRollers(g, _startPosX, _startPosY);
             Brush brDopColor = new SolidBrush(DopColor);
 
-            PointF[] cannon1Points = { new PointF(_startPosX + 120, _startPosY + 81), new PointF(_startPosX + 125, _startPosY + 68),
+            PointF[] rollers1Points = { new PointF(_startPosX + 120, _startPosY + 81), new PointF(_startPosX + 125, _startPosY + 68),
                                            new PointF(_startPosX + 130, _startPosY + 68), new PointF(_startPosX + 135, _startPosY + 81) };
-            g.FillPolygon(brDopColor, cannon1Points);
+            g.FillPolygon(brDopColor, rollers1Points);
 
-            PointF[] cannon2Points = { new PointF(_startPosX + 75, _startPosY + 81), new PointF(_startPosX + 80, _startPosY + 68),
+            PointF[] rollers2Points = { new PointF(_startPosX + 75, _startPosY + 81), new PointF(_startPosX + 80, _startPosY + 68),
                                            new PointF(_startPosX + 85, _startPosY + 68), new PointF(_startPosX + 90, _startPosY + 81) };
-            g.FillPolygon(brDopColor, cannon2Points);
+            g.FillPolygon(brDopColor, rollers2Points);
         }
 
         private void DrawSixRollers(Graphics g, float _startPosX, float _startPosY)
