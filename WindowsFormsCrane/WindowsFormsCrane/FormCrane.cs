@@ -12,14 +12,18 @@ namespace WindowsFormsCrane
 {
     public partial class FormCrane : Form
     {
-        private TrackedVehicle trackedVehicle;
+        private ITransport trackedVehicle;
 
         public FormCrane()
         {
             InitializeComponent();
             comboBoxRollers.Items.AddRange(new string[] { "2 Катков", "4 Катков", "6 Катков" });
         }
-
+        public void SetTrackedVehicle(ITransport trackedVehicle)
+        {
+            this.trackedVehicle = trackedVehicle;
+            Draw();
+        }
         private void Draw()
         {
             Bitmap bmp = new Bitmap(pictureBox.Width, pictureBox.Height);
@@ -31,8 +35,7 @@ namespace WindowsFormsCrane
         private void buttonCreateTrackedVehicle_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            trackedVehicle = new TrackedVehicle(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Blue,
-            Color.Green, Color.Blue);
+            trackedVehicle = new TrackedVehicle(rnd.Next(100, 200), rnd.Next(1000, 2000), Color.Blue);
             trackedVehicle.SetPosition(rnd.Next(50, 120), rnd.Next(50, 120), pictureBox.Width,
             pictureBox.Height);
             Draw();

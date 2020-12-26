@@ -10,8 +10,9 @@ namespace WindowsFormsCrane
     public class Crane : TrackedVehicle
     {
         private IDopElements roller;
-
-        public Crane(int maxSpeed, float weight, Color mainColor, Color dopColor, Color rollersColor, int rollers, int rollersForm) :
+        public Color DopColor { private set; get; }
+        public Crane(int maxSpeed, float weight, Color mainColor, Color dopColor, Color rollersColor,
+            int rollers, int rollersForm) :
             base(maxSpeed, weight, mainColor, 100, 60)
         {
             DopColor = dopColor;
@@ -29,6 +30,13 @@ namespace WindowsFormsCrane
                 roller = new RectangleRollersForm(rollers, rollersColor);
             }
         }
+        public Crane(int maxSpeed, float weight, Color mainColor, Color dopColor) :
+           base(maxSpeed, weight, mainColor, 100, 60)
+        {
+            DopColor = dopColor;
+            roller = new TrapezeRollersForm(6, dopColor);
+        }
+
 
         public override void DrawTransport(Graphics g)
         {

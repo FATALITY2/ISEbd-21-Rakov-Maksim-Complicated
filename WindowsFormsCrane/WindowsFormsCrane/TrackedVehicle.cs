@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using static System.Collections.IEnumerable;
+
 namespace WindowsFormsCrane
 {
     public class TrackedVehicle : Vehicle
@@ -12,14 +14,11 @@ namespace WindowsFormsCrane
 
         protected readonly int trackedVehicleHeight = 50;
 
-        public Color DopColor { protected set; get; }
-
-        public TrackedVehicle(int maxSpeed, float weight, Color mainColor, Color dopColor)
+        public TrackedVehicle(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-            DopColor = dopColor;
         }
 
         protected TrackedVehicle(int maxSpeed, float weight, Color mainColor, int trackedVehicleWidth, int trackedVehicleHeight)
@@ -76,13 +75,14 @@ namespace WindowsFormsCrane
             //рисую главную часть крана
             g.DrawRectangle(pen, _startPosX + 54, _startPosY + 20, 25, 40);
             g.DrawRectangle(pen, _startPosX + 80, _startPosY + 30, 80, 30);
-            Brush mainPart = new SolidBrush(DopColor);
+            Brush mainPart = new SolidBrush(MainColor);
             g.FillRectangle(mainPart, _startPosX + 55, _startPosY + 21, 24, 38);
             g.FillRectangle(mainPart, _startPosX + 80, _startPosY + 31, 80, 29);
             g.FillRectangle(mainPart, _startPosX + 141, _startPosY + 20, 12, 5);
 
             // Противовес
             {
+
                 g.DrawRectangle(pen, _startPosX + 160, _startPosY + 20, 22, 44);
                 g.DrawLine(pen, _startPosX + 140, _startPosY + 30, _startPosX + 140, _startPosY + 20);
                 g.DrawLine(pen, _startPosX + 153, _startPosY + 30, _startPosX + 153, _startPosY + 20);
