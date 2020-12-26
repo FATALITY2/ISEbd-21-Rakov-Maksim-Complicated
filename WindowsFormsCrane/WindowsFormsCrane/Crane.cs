@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using static System.Collections.IEnumerable;
-
 namespace WindowsFormsCrane
 {
     public class TrackedVehicle : Vehicle
