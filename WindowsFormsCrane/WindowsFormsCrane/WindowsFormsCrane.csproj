@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crane.cs" />
+    <Compile Include="TrackedVehicle.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="RectangleRollersForm.cs" />
     <Compile Include="EnumElements.cs" />
@@ -60,7 +60,7 @@
     <Compile Include="ITransport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrackedVehicle.cs" />
+    <Compile Include="Crane.cs" />
     <Compile Include="TrapezeRollersForm.cs" />
     <Compile Include="TriangleRollersForm.cs" />
     <Compile Include="Vehicle.cs" />
